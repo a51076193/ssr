@@ -211,16 +211,19 @@ pre_install(){
     [ -z "${shadowsocksport}" ] && shadowsocksport=${7070}
     expr ${shadowsocksport} + 1 &>/dev/null
     if [ $? -eq 0 ]; then
-        if [ ${shadowsocksport} -ge 1 ] && [ ${shadowsocksport} -le 65535 ] && [ ${shadowsocksport:0:1} != 0 ]; then
+        if [ ${shadowsocksport} -ge 1 ] && [ ${shadowsocksport} -le 65535 ]; then
             echo
             echo "---------------------------"
             echo "port = ${shadowsocksport}"
             echo "---------------------------"
             echo
             break
+        else
+            echo -e "[${red}Error${plain}] Input error, please input a number between 1 and 65535"
         fi
+    else
+        echo -e "[${red}Error${plain}] Input error, please input a number between 1 and 65535"
     fi
-    echo -e "[${red}Error${plain}] Please enter a correct number [1-65535]"
     done
 
     # Set shadowsocksR config stream ciphers
