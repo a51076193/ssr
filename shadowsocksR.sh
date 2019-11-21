@@ -234,15 +234,15 @@ pre_install(){
         hint="${ciphers[$i-1]}"
         echo -e "${green}${i}${plain}) ${hint}"
     done
-    read -p "Which cipher you'd select(Default: ${ciphers[1]}):" pick
+    pick=2
     [ -z "$pick" ] && pick=2
     expr ${pick} + 1 &>/dev/null
     if [ $? -ne 0 ]; then
-        echo -e "[${red}Error${plain}] Please enter a number"
+        echo -e "[${red}Error${plain}] Input error, please input a number"
         continue
     fi
     if [[ "$pick" -lt 1 || "$pick" -gt ${#ciphers[@]} ]]; then
-        echo -e "[${red}Error${plain}] Please enter a number between 1 and ${#ciphers[@]}"
+        echo -e "[${red}Error${plain}] Input error, please input a number between 1 and ${#ciphers[@]}"
         continue
     fi
     shadowsockscipher=${ciphers[$pick-1]}
@@ -262,7 +262,7 @@ pre_install(){
         hint="${protocols[$i-1]}"
         echo -e "${green}${i}${plain}) ${hint}"
     done
-    read -p "Which protocol you'd select(Default: ${protocols[0]}):" protocol
+    protocol=1
     [ -z "$protocol" ] && protocol=1
     expr ${protocol} + 1 &>/dev/null
     if [ $? -ne 0 ]; then
@@ -290,7 +290,7 @@ pre_install(){
         hint="${obfs[$i-1]}"
         echo -e "${green}${i}${plain}) ${hint}"
     done
-    read -p "Which obfs you'd select(Default: ${obfs[0]}):" r_obfs
+    r_obfs=1
     [ -z "$r_obfs" ] && r_obfs=1
     expr ${r_obfs} + 1 &>/dev/null
     if [ $? -ne 0 ]; then
@@ -310,9 +310,6 @@ pre_install(){
     break
     done
 
-    echo
-    echo "Press any key to start...or Press Ctrl+C to cancel"
-    char=`get_char`
     # Install necessary dependencies
     if check_sys packageManager yum; then
         yum install -y python python-devel python-setuptools openssl openssl-devel curl wget unzip gcc automake autoconf make libtool
