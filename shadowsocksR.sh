@@ -429,8 +429,8 @@ Set_config_speed_limit_per_con(){
 	do
 	echo -e "请输入要设置的每个端口 单线程 限速上限(单位：KB/S)"
 	echo -e "${Tip} 单线程限速：每个端口 单线程的限速上限，多线程即无效。"
-	ssr_speed_limit_per_con=0
-	[[ -z "$ssr_speed_limit_per_con" ]] && ssr_speed_limit_per_con=0 && echo && break
+	ssr_speed_limit_per_con=33333
+	[[ -z "$ssr_speed_limit_per_con" ]] && ssr_speed_limit_per_con=33333 && echo && break
 	echo $((${ssr_speed_limit_per_con}+0)) &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_speed_limit_per_con} -ge 1 ]] && [[ ${ssr_speed_limit_per_con} -le 131072 ]]; then
@@ -450,8 +450,8 @@ Set_config_speed_limit_per_user(){
 	echo
 	echo -e "请输入要设置的每个端口 总速度 限速上限(单位：KB/S)"
 	echo -e "${Tip} 端口总限速：每个端口 总速度 限速上限，单个端口整体限速。"
-	ssr_speed_limit_per_user=0
-	[[ -z "$ssr_speed_limit_per_user" ]] && ssr_speed_limit_per_user=0 && echo && break
+	ssr_speed_limit_per_user=33333
+	[[ -z "$ssr_speed_limit_per_user" ]] && ssr_speed_limit_per_user=33333 && echo && break
 	echo $((${ssr_speed_limit_per_user}+0)) &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_speed_limit_per_user} -ge 1 ]] && [[ ${ssr_speed_limit_per_user} -le 131072 ]]; then
