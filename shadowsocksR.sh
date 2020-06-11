@@ -344,7 +344,7 @@ Set_config_protocol(){
  ${Green_font_prefix}6.${Font_color_suffix} auth_chain_b
  ${Tip} 如果使用 auth_chain_a 协议，请加密方式选择 none，混淆随意(建议 plain)" && echo
 	ssr_protocol="1"
-	[[ -z "${ssr_protocol}" ]] && ssr_protocol="2"
+	[[ -z "${ssr_protocol}" ]] && ssr_protocol="1"
 	if [[ ${ssr_protocol} == "1" ]]; then
 		ssr_protocol="origin"
 	elif [[ ${ssr_protocol} == "2" ]]; then
